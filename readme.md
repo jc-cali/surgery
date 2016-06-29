@@ -1,11 +1,4 @@
----
-title: Enable Search - Grocery List
-type: lab
-duration: "1:25"
-creator:
-    name: Drew Mahrt
-    city: NYC
----
+
 
 
 
