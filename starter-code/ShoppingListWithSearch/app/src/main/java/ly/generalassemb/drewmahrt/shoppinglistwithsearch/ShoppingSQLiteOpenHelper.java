@@ -96,4 +96,16 @@ public class ShoppingSQLiteOpenHelper extends SQLiteOpenHelper{
         db.close();
         return deleteNum;
     }
+
+    public Cursor getSearchResults(String search_string){
+
+        SQLiteDatabase db = this.getReadableDatabase();
+
+//        String[] SEARCH_COLS = { "ITEM_NAME", "TYPE" };
+        String WHERE_CLAUSE = "ITEM_NAME LIKE ? OR TYPE LIKE ?";
+        String[] WHERE_ARGS = { "%"+search_string+"%" };
+        String ORDER_BY = "TYPE DESC";
+        return db.query(SHOPPING_LIST_TABLE_NAME, SHOPPING_COLUMNS, WHERE_CLAUSE, WHERE_ARGS, null, null, ORDER_BY);
+        
+    }
 }
