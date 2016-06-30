@@ -8,26 +8,37 @@ import android.database.sqlite.SQLiteOpenHelper;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.support.v7.widget.SearchView;
+import android.view.LayoutInflater;
 import android.view.Menu;
 import android.view.MenuInflater;
 import android.view.MenuItem;
 import android.view.View;
+<<<<<<< HEAD
 import android.widget.AdapterView;
+=======
+import android.view.ViewGroup;
+>>>>>>> 8a8b0f03b88e2072d39af23995f2dc9327143e2a
 import android.widget.CursorAdapter;
 import android.widget.ListView;
 import android.widget.SimpleCursorAdapter;
+import android.widget.TextView;
+import android.widget.Toast;
 
 import ly.generalassemb.drewmahrt.shoppinglistwithsearch.setup.DBAssetHelper;
 
 public class MainActivity extends AppCompatActivity {
     private ListView mShoppingListView;
     private CursorAdapter mCursorAdapter;
+<<<<<<< HEAD
     private ShoppingSQLiteOpenHelper mHelper;
 
     Intent mDetailIntent;
 //    ListView mGroceryList;
 //    Cursor mCursor;
     AdapterView.OnItemClickListener mClickListener;
+=======
+    private ShoppingSQLiteOpenHelper mSQLHelper;
+>>>>>>> 8a8b0f03b88e2072d39af23995f2dc9327143e2a
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -53,6 +64,7 @@ public class MainActivity extends AppCompatActivity {
 
         mShoppingListView.setAdapter(mCursorAdapter);
 
+<<<<<<< HEAD
         // Takes care of the initial intent in the OnCreate and executes a cursor search if the intent is a search.
         handleIntent(getIntent());
 
@@ -78,6 +90,54 @@ public class MainActivity extends AppCompatActivity {
         //mShoppingListView.setAdapter(mCursorAdapter);
         mShoppingListView.setOnItemClickListener(mClickListener);
 
+=======
+        handleIntent(getIntent());
+    }
+
+    @Override
+    public boolean onCreateOptionsMenu(Menu menu) {
+        MenuInflater inflater = getMenuInflater();
+        inflater.inflate(R.menu.menu, menu);
+
+        // Associate searchable configuration with the SearchView
+        SearchManager searchManager =
+                (SearchManager) getSystemService(Context.SEARCH_SERVICE);
+        SearchView searchView =
+                (SearchView) menu.findItem(R.id.search).getActionView();
+        searchView.setSearchableInfo(
+                searchManager.getSearchableInfo(getComponentName()));
+        return true;
+    }
+
+    @Override
+    public void onNewIntent(Intent intent) {
+        handleIntent(intent);
+    }
+
+    public void handleIntent(Intent intent){
+        if (Intent.ACTION_SEARCH.equals(intent.getAction())){
+
+            mSQLHelper = new ShoppingSQLiteOpenHelper(MainActivity.this);
+            Cursor results = mSQLHelper.getSearchResults(intent.getStringExtra(SearchManager.QUERY));
+            mCursorAdapter.changeCursor(results);
+            mCursorAdapter.notifyDataSetChanged();
+
+//            mCursorAdapter = new CursorAdapter(MainActivity.this, results, 0) {
+//                @Override
+//                public View newView(Context context, Cursor cursor, ViewGroup parent) {
+//                    return LayoutInflater.from(context).inflate(android.R.layout.simple_list_item_1, parent, false);
+//                }
+//
+//                @Override
+//                public void bindView(View view, Context context, Cursor cursor) {
+//                    TextView txt = (TextView) view.findViewById(android.R.id.text1);
+//                    String rowData = cursor.getString(cursor.getColumnIndex("name") + cursor.getColumnIndex("type"));
+//                    txt.setText(rowData);
+//
+//                }
+//            };
+        }
+>>>>>>> 8a8b0f03b88e2072d39af23995f2dc9327143e2a
     }
 
     // This is called since launchMode is set to "singleTop" in the AndroidManifest.xml file.
