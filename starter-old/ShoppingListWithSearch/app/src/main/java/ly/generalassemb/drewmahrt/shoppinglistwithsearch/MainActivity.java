@@ -2,6 +2,7 @@ package ly.generalassemb.drewmahrt.shoppinglistwithsearch;
 
 import android.app.SearchManager;
 import android.content.Context;
+import android.content.Intent;
 import android.database.Cursor;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
@@ -10,18 +11,9 @@ import android.view.LayoutInflater;
 import android.view.Menu;
 import android.view.MenuInflater;
 import android.view.MenuItem;
-<<<<<<< HEAD:starter-old/ShoppingListWithSearch/app/src/main/java/ly/generalassemb/drewmahrt/shoppinglistwithsearch/MainActivity.java
-<<<<<<< HEAD
 import android.view.View;
-<<<<<<< HEAD
 import android.widget.AdapterView;
-=======
 import android.view.ViewGroup;
->>>>>>> 8a8b0f03b88e2072d39af23995f2dc9327143e2a
-=======
->>>>>>> parent of c2a4901... Finished Android Search Lab including grocery detail but no detail from search results
-=======
->>>>>>> parent of c2a4901... Finished Android Search Lab including grocery detail but no detail from search results:starter-code/ShoppingListWithSearch/app/src/main/java/ly/generalassemb/drewmahrt/shoppinglistwithsearch/MainActivity.java
 import android.widget.CursorAdapter;
 import android.widget.ListView;
 import android.widget.SimpleCursorAdapter;
@@ -33,22 +25,13 @@ import ly.generalassemb.drewmahrt.shoppinglistwithsearch.setup.DBAssetHelper;
 public class MainActivity extends AppCompatActivity {
     private ListView mShoppingListView;
     private CursorAdapter mCursorAdapter;
-<<<<<<< HEAD:starter-old/ShoppingListWithSearch/app/src/main/java/ly/generalassemb/drewmahrt/shoppinglistwithsearch/MainActivity.java
-<<<<<<< HEAD
-<<<<<<< HEAD
     private ShoppingSQLiteOpenHelper mHelper;
 
     Intent mDetailIntent;
 //    ListView mGroceryList;
 //    Cursor mCursor;
     AdapterView.OnItemClickListener mClickListener;
-=======
     private ShoppingSQLiteOpenHelper mSQLHelper;
->>>>>>> 8a8b0f03b88e2072d39af23995f2dc9327143e2a
-=======
->>>>>>> parent of c2a4901... Finished Android Search Lab including grocery detail but no detail from search results
-=======
->>>>>>> parent of c2a4901... Finished Android Search Lab including grocery detail but no detail from search results:starter-code/ShoppingListWithSearch/app/src/main/java/ly/generalassemb/drewmahrt/shoppinglistwithsearch/MainActivity.java
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -66,10 +49,7 @@ public class MainActivity extends AppCompatActivity {
 
         mCursorAdapter = new SimpleCursorAdapter(this,android.R.layout.simple_list_item_1,cursor,new String[]{ShoppingSQLiteOpenHelper.COL_ITEM_NAME},new int[]{android.R.id.text1},0);
         mShoppingListView.setAdapter(mCursorAdapter);
-<<<<<<< HEAD:starter-old/ShoppingListWithSearch/app/src/main/java/ly/generalassemb/drewmahrt/shoppinglistwithsearch/MainActivity.java
-<<<<<<< HEAD
 
-<<<<<<< HEAD
         // Takes care of the initial intent in the OnCreate and executes a cursor search if the intent is a search.
         handleIntent(getIntent());
 
@@ -95,7 +75,6 @@ public class MainActivity extends AppCompatActivity {
         //mShoppingListView.setAdapter(mCursorAdapter);
         mShoppingListView.setOnItemClickListener(mClickListener);
 
-=======
         handleIntent(getIntent());
     }
 
@@ -142,11 +121,9 @@ public class MainActivity extends AppCompatActivity {
 //                }
 //            };
         }
->>>>>>> 8a8b0f03b88e2072d39af23995f2dc9327143e2a
-=======
->>>>>>> parent of c2a4901... Finished Android Search Lab including grocery detail but no detail from search results
+
     }
-=======
+
     }
->>>>>>> parent of c2a4901... Finished Android Search Lab including grocery detail but no detail from search results:starter-code/ShoppingListWithSearch/app/src/main/java/ly/generalassemb/drewmahrt/shoppinglistwithsearch/MainActivity.java
+
 }

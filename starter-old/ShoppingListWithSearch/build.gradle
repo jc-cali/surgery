@@ -5,22 +5,7 @@ buildscript {
         jcenter()
     }
     dependencies {
-<<<<<<< HEAD:starter-old/ShoppingListWithSearch/build.gradle
-<<<<<<< HEAD
-<<<<<<< HEAD
         classpath 'com.android.tools.build:gradle:2.1.0'
-=======
-        classpath 'com.android.tools.build:gradle:2.1.2'
->>>>>>> 8a8b0f03b88e2072d39af23995f2dc9327143e2a
-=======
-        classpath 'com.android.tools.build:gradle:1.5.0'
->>>>>>> parent of c2a4901... Finished Android Search Lab including grocery detail but no detail from search results
-=======
-        classpath 'com.android.tools.build:gradle:1.5.0'
->>>>>>> parent of c2a4901... Finished Android Search Lab including grocery detail but no detail from search results:starter-code/ShoppingListWithSearch/build.gradle
-
-        // NOTE: Do not place your application dependencies here; they belong
-        // in the individual module build.gradle files
     }
 }
 
