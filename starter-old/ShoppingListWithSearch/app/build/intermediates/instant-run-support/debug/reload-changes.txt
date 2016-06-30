@@ -1,0 +1,4 @@
+CHANGED,/Users/JC/adi/android-search-lab/starter-code/ShoppingListWithSearch/app/build/intermediates/transforms/instantRun/debug/folders/4000/5/enhanced/ly/generalassemb/drewmahrt/shoppinglistwithsearch/MainActivity$1$override.class
+CHANGED,/Users/JC/adi/android-search-lab/starter-code/ShoppingListWithSearch/app/build/intermediates/transforms/instantRun/debug/folders/4000/5/enhanced/ly/generalassemb/drewmahrt/shoppinglistwithsearch/ShoppingSQLiteOpenHelper$override.class
+CHANGED,/Users/JC/adi/android-search-lab/starter-code/ShoppingListWithSearch/app/build/intermediates/transforms/instantRun/debug/folders/4000/5/enhanced/com/android/tools/fd/runtime/AppPatchesLoaderImpl.class
+CHANGED,/Users/JC/adi/android-search-lab/starter-code/ShoppingListWithSearch/app/build/intermediates/transforms/instantRun/debug/folders/4000/5/enhanced/ly/generalassemb/drewmahrt/shoppinglistwithsearch/MainActivity$override.class
