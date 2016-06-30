@@ -58,20 +58,6 @@ public class ShoppingSQLiteOpenHelper extends SQLiteOpenHelper{
         this.onCreate(db);
     }
 
-    //Add new itinerary list
-    public long addItem(String name, String description, String price, String type){
-        ContentValues values = new ContentValues();
-        values.put(COL_ITEM_NAME, name);
-        values.put(COL_ITEM_DESCRIPTION, description);
-        values.put(COL_ITEM_PRICE, price);
-        values.put(COL_ITEM_TYPE, type);
-
-        SQLiteDatabase db = this.getWritableDatabase();
-        long returnId = db.insert(SHOPPING_LIST_TABLE_NAME, null, values);
-        db.close();
-        return returnId;
-    }
-
     public Cursor getShoppingList(){
 
         SQLiteDatabase db = this.getReadableDatabase();
@@ -88,6 +74,42 @@ public class ShoppingSQLiteOpenHelper extends SQLiteOpenHelper{
         return cursor;
     }
 
+    public Cursor searchShoppingList(String query){
+        SQLiteDatabase db = this.getReadableDatabase();
+
+        // By using the condition, SELECT _id, ITEM_NAME, PRICE, DESCRIPTION, TYPE
+        //                         WHERE NAME LIKE "%<query string>%
+        // You are selecting all records where the NAME column contains the query string anywhere
+        // within the field.
+        Cursor cursor = db.query(SHOPPING_LIST_TABLE_NAME, // a. table
+                SHOPPING_COLUMNS, // b. column names
+                COL_ITEM_NAME + " LIKE ?", // c. selections
+// Commented out attempt to query the TYPE column with the NAME column.
+//                COL_ITEM_NAME + " LIKE ?" OR COL_ITEM_TYPE + " LIKE ?", // c. selections
+                new String[]{"%"+query+"%"}, // d. selections args
+//                new String[]{"%"+query+"%","%"+query+"%"}, // d. selections args
+                null, // e. group by
+                null, // f. having
+                null, // g. order by
+                null); // h. limit
+
+        return cursor;
+    }
+
+    //Add new itinerary list
+    public long addItem(String name, String description, String price, String type){
+        ContentValues values = new ContentValues();
+        values.put(COL_ITEM_NAME, name);
+        values.put(COL_ITEM_DESCRIPTION, description);
+        values.put(COL_ITEM_PRICE, price);
+        values.put(COL_ITEM_TYPE, type);
+
+        SQLiteDatabase db = this.getWritableDatabase();
+        long returnId = db.insert(SHOPPING_LIST_TABLE_NAME, null, values);
+        db.close();
+        return returnId;
+    }
+
     public int deleteItem(int id){
         SQLiteDatabase db = getWritableDatabase();
         int deleteNum = db.delete(SHOPPING_LIST_TABLE_NAME,
@@ -96,4 +118,5 @@ public class ShoppingSQLiteOpenHelper extends SQLiteOpenHelper{
         db.close();
         return deleteNum;
     }
+
 }
