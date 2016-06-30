@@ -96,6 +96,7 @@ public class ShoppingSQLiteOpenHelper extends SQLiteOpenHelper{
         db.close();
         return deleteNum;
     }
+<<<<<<< HEAD:starter-old/ShoppingListWithSearch/app/src/main/java/ly/generalassemb/drewmahrt/shoppinglistwithsearch/ShoppingSQLiteOpenHelper.java
 <<<<<<< HEAD
 
 <<<<<<< HEAD
@@ -114,4 +115,6 @@ public class ShoppingSQLiteOpenHelper extends SQLiteOpenHelper{
 >>>>>>> 8a8b0f03b88e2072d39af23995f2dc9327143e2a
 =======
 >>>>>>> parent of c2a4901... Finished Android Search Lab including grocery detail but no detail from search results
+=======
+>>>>>>> parent of c2a4901... Finished Android Search Lab including grocery detail but no detail from search results:starter-code/ShoppingListWithSearch/app/src/main/java/ly/generalassemb/drewmahrt/shoppinglistwithsearch/ShoppingSQLiteOpenHelper.java
 }
