@@ -1,0 +1,37 @@
+<?xml version="1.0" encoding="utf-8"?>
+<instant-run
+    abi="arm64-v8a,armeabi-v7a,armeabi"
+    api-level="23"
+    density="560dpi"
+    format="7"
+    timestamp="1467261730196493000" >
+
+    <task
+        name="javac"
+        duration="173" />
+    <task
+        name="instant-run-dex"
+        duration="0" />
+    <task
+        name="instant-run-transform"
+        duration="39" />
+    <task
+        name="verifier"
+        duration="6" />
+
+    <artifact
+        location="/Users/JC/adi/android-search-lab/starter-code/ShoppingListWithSearch/app/build/intermediates/transforms/dex/debug/folders/1000/5/slice_4/classes.dex"
+        type="DEX" />
+
+    <build timestamp="1467259415219010000" >
+        <artifact
+            location="/Users/JC/adi/android-search-lab/starter-code/ShoppingListWithSearch/app/build/outputs/apk/app-debug.apk"
+            type="MAIN" />
+    </build>
+    <build timestamp="1467261730196493000" >
+        <artifact
+            location="/Users/JC/adi/android-search-lab/starter-code/ShoppingListWithSearch/app/build/intermediates/transforms/dex/debug/folders/1000/5/slice_4/classes.dex"
+            type="DEX" />
+    </build>
+
+</instant-run>
