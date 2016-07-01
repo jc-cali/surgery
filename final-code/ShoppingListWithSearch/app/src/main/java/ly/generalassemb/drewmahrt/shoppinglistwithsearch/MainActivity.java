@@ -10,14 +10,17 @@ import android.database.sqlite.SQLiteOpenHelper;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.support.v7.widget.SearchView;
+import android.view.LayoutInflater;
 import android.view.Menu;
 import android.view.MenuInflater;
 import android.view.MenuItem;
 import android.view.View;
+import android.view.ViewGroup;
 import android.widget.AdapterView;
 import android.widget.CursorAdapter;
 import android.widget.ListView;
 import android.widget.SimpleCursorAdapter;
+import android.widget.TextView;
 
 import ly.generalassemb.drewmahrt.shoppinglistwithsearch.setup.DBAssetHelper;
 
@@ -45,13 +48,25 @@ public class MainActivity extends AppCompatActivity {
         cursor = mHelper.getShoppingList();
 
 
-//  My attempt to get the type field in the list view to display in the main activity
-//        String data1 = ShoppingSQLiteOpenHelper.COL_ITEM_NAME;
-//        String data2 = ShoppingSQLiteOpenHelper.COL_ITEM_TYPE;
-//        String data3 = data1 + " - " + data2;
-//        mCursorAdapter = new SimpleCursorAdapter(this,android.R.layout.simple_list_item_1,cursor,new String[]{data3},new int[]{android.R.id.text1},0);
+//  Use the bindView to combine the NAME and TYPE columns in my list view.
+        mCursorAdapter = new CursorAdapter(MainActivity.this, cursor, 0) {
+            @Override
+            public View newView(Context context, Cursor cursor, ViewGroup parent) {
+                return LayoutInflater.from(context).inflate(android.R.layout.simple_list_item_1,
+                        parent, false);
+            }
 
-        mCursorAdapter = new SimpleCursorAdapter(this,android.R.layout.simple_list_item_1,cursor,new String[]{ShoppingSQLiteOpenHelper.COL_ITEM_NAME},new int[]{android.R.id.text1},0);
+            @Override
+            public void bindView(View view, Context context, Cursor cursor) {
+                TextView txt = (TextView) view.findViewById(android.R.id.text1);
+                String rowData = cursor.getString(cursor.getColumnIndex("ITEM_NAME")) +
+                        " - " + cursor.getString(cursor.getColumnIndex("TYPE"));
+                txt.setText(rowData);
+            }
+        };
+
+
+//        mCursorAdapter = new SimpleCursorAdapter(this,android.R.layout.simple_list_item_1,cursor,new String[]{ShoppingSQLiteOpenHelper.COL_ITEM_NAME},new int[]{android.R.id.text1},0);
 
         // Takes care of the initial intent in the OnCreate and executes a cursor search if the intent is a search.
         handleIntent(getIntent());

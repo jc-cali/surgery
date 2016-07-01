@@ -90,11 +90,11 @@ public class ShoppingSQLiteOpenHelper extends SQLiteOpenHelper{
         // within the field.
         Cursor cursor = db.query(SHOPPING_LIST_TABLE_NAME, // a. table
                 SHOPPING_COLUMNS, // b. column names
-                COL_ITEM_NAME + " LIKE ?", // c. selections
-// Commented out attempt to query the TYPE column with the NAME column.
-//                COL_ITEM_NAME + " LIKE ?" OR COL_ITEM_TYPE + " LIKE ?", // c. selections
-                new String[]{"%"+query+"%"}, // d. selections args
-//                new String[]{"%"+query+"%","%"+query+"%"}, // d. selections args
+//                COL_ITEM_NAME + " LIKE ?", // c. selections
+// Query both the NAME and TYPE columns.
+                COL_ITEM_NAME + " LIKE ?" + " OR " + COL_ITEM_TYPE + " LIKE ?", // c. selections
+//                new String[]{"%"+query+"%"}, // d. selections args
+                new String[]{"%"+query+"%","%"+query+"%"}, // d. selections args
                 null, // e. group by
                 null, // f. having
                 null, // g. order by
