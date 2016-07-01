@@ -20,7 +20,7 @@ import java.io.InputStreamReader;
 public class ShoppingSQLiteOpenHelper extends SQLiteOpenHelper{
     private static final String TAG = ShoppingSQLiteOpenHelper.class.getCanonicalName();
 
-    private static final int DATABASE_VERSION = 7;
+    private static final int DATABASE_VERSION =7;
     public static final String DATABASE_NAME = "SHOPPING_DB";
     public static final String SHOPPING_LIST_TABLE_NAME = "SHOPPING_LIST";
 
@@ -54,6 +54,7 @@ public class ShoppingSQLiteOpenHelper extends SQLiteOpenHelper{
 
     @Override
     public void onUpgrade(SQLiteDatabase db, int oldVersion, int newVersion) {
+
         db.execSQL("DROP TABLE IF EXISTS " + SHOPPING_LIST_TABLE_NAME);
         this.onCreate(db);
     }
@@ -71,11 +72,17 @@ public class ShoppingSQLiteOpenHelper extends SQLiteOpenHelper{
                 null, // g. order by
                 null); // h. limit
 
+
         return cursor;
     }
 
     public Cursor searchShoppingList(String query){
         SQLiteDatabase db = this.getReadableDatabase();
+
+//        SQLiteDatabase db;
+//        db= this.getWritableDatabase();
+//        db.close();
+//        db = this.getReadableDatabase();
 
         // By using the condition, SELECT _id, ITEM_NAME, PRICE, DESCRIPTION, TYPE
         //                         WHERE NAME LIKE "%<query string>%

@@ -1,8 +1,10 @@
 package ly.generalassemb.drewmahrt.shoppinglistwithsearch;
 
+import android.app.LoaderManager;
 import android.app.SearchManager;
 import android.content.Context;
 import android.content.Intent;
+import android.content.Loader;
 import android.database.Cursor;
 import android.database.sqlite.SQLiteOpenHelper;
 import android.support.v7.app.AppCompatActivity;
@@ -26,7 +28,7 @@ public class MainActivity extends AppCompatActivity {
 
     Intent mDetailIntent;
 //    ListView mGroceryList;
-//    Cursor mCursor;
+    Cursor cursor;
     AdapterView.OnItemClickListener mClickListener;
 
     @Override
@@ -35,13 +37,13 @@ public class MainActivity extends AppCompatActivity {
         setContentView(R.layout.activity_main);
 
         //Ignore the two lines below, they are for setup
-        DBAssetHelper dbSetup = new DBAssetHelper(MainActivity.this);
+        final DBAssetHelper dbSetup = new DBAssetHelper(MainActivity.this);
         dbSetup.getReadableDatabase();
 
         mShoppingListView = (ListView)findViewById(R.id.shopping_list_view);
-
         mHelper = new ShoppingSQLiteOpenHelper(MainActivity.this);
-        final Cursor cursor = mHelper.getShoppingList();
+        cursor = mHelper.getShoppingList();
+
 
 //  My attempt to get the type field in the list view to display in the main activity
 //        String data1 = ShoppingSQLiteOpenHelper.COL_ITEM_NAME;
@@ -51,11 +53,8 @@ public class MainActivity extends AppCompatActivity {
 
         mCursorAdapter = new SimpleCursorAdapter(this,android.R.layout.simple_list_item_1,cursor,new String[]{ShoppingSQLiteOpenHelper.COL_ITEM_NAME},new int[]{android.R.id.text1},0);
 
-        mShoppingListView.setAdapter(mCursorAdapter);
-
         // Takes care of the initial intent in the OnCreate and executes a cursor search if the intent is a search.
         handleIntent(getIntent());
-
 
         mClickListener = new AdapterView.OnItemClickListener() {
             @Override
@@ -75,8 +74,8 @@ public class MainActivity extends AppCompatActivity {
             }
         };
 
-        //mShoppingListView.setAdapter(mCursorAdapter);
         mShoppingListView.setOnItemClickListener(mClickListener);
+        mShoppingListView.setAdapter(mCursorAdapter);
 
     }
 
@@ -109,17 +108,14 @@ public class MainActivity extends AppCompatActivity {
     private void handleIntent(Intent intent) {
         if (Intent.ACTION_SEARCH.equals(intent.getAction())) {
             String query = intent.getStringExtra(SearchManager.QUERY);
-            Cursor cursor = mHelper.searchShoppingList(query);
+            // Reassign cursor by rerunning the query using the search string.
+            cursor = mHelper.searchShoppingList(query);
 
             // Closes the current cursor from getShoppingList and uses the new cursor called
             // from searchShoppingList.
-
-            // NOTE: This cursor closes the previous cursor query, which errors the app when attempting to
-            // get grocery detail from my search results.
             mCursorAdapter.changeCursor(cursor);
             // The view will refresh since the data from the new cursor has changed.
             mCursorAdapter.notifyDataSetChanged();
         }
     }
-
 }

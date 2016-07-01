@@ -32,4 +32,5 @@ public class GroceryDetailActivity extends AppCompatActivity {
         mTxtPrice.setText(price);
         mTxtType.setText(type);
 
-    }}
+    }
+}
